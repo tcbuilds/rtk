@@ -2124,6 +2124,14 @@ mod tests {
     }
 
     #[test]
+    fn test_rewrite_uv_run_ruff_check() {
+        assert_eq!(
+            rewrite_command("uv run ruff check . 2>&1", &[]),
+            Some("rtk ruff check . 2>&1".into())
+        );
+    }
+
+    #[test]
     fn test_rewrite_ruff_format() {
         assert_eq!(
             rewrite_command("ruff format src/", &[]),
@@ -2144,6 +2152,30 @@ mod tests {
         assert_eq!(
             rewrite_command("python -m pytest -x tests/", &[]),
             Some("rtk pytest -x tests/".into())
+        );
+    }
+
+    #[test]
+    fn test_rewrite_uv_run_pytest() {
+        assert_eq!(
+            rewrite_command("uv run pytest -x tests/", &[]),
+            Some("rtk pytest -x tests/".into())
+        );
+    }
+
+    #[test]
+    fn test_rewrite_uv_run_python_m_pytest() {
+        assert_eq!(
+            rewrite_command("uv run python -m pytest tests/", &[]),
+            Some("rtk pytest tests/".into())
+        );
+    }
+
+    #[test]
+    fn test_rewrite_uv_run_mypy() {
+        assert_eq!(
+            rewrite_command("uv run mypy src/", &[]),
+            Some("rtk mypy src/".into())
         );
     }
 

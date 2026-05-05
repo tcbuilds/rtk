@@ -19,6 +19,15 @@ secrets.json
 *.swo
 *~
 
+# Local agent instructions and scratch state
+AGENTS.md
+CLAUDE.md
+CLAUDE.local.md
+CLAUDE.*.md
+.claude/
+.codex/
+.agents/
+
 .next
 
 # OS
